@@ -1,0 +1,73 @@
+-- "Probe"."AudioPlayer" definition
+
+-- Drop table
+
+-- DROP TABLE "Probe"."AudioPlayer";
+
+CREATE TABLE "Probe"."AudioPlayer" (
+	"NodeID" int4 NOT NULL,
+	"AudioPlayerID" uuid DEFAULT gen_random_uuid() NOT NULL,
+	"ModifiedByUserID" uuid NULL,
+	"ModifiedDate" timestamptz(3) DEFAULT now() NOT NULL,
+	"IsDeleted" bool DEFAULT false NOT NULL,
+	"IsDisabled" bool DEFAULT false NOT NULL,
+	"IsVirtual" bool DEFAULT false NOT NULL,
+	"Name" varchar(100) NOT NULL,
+	"AudioPlayerTypeID" int4 NOT NULL,
+	"XmlParameters" xml NULL,
+	"JSON" text NULL,
+	CONSTRAINT pk_audioplayer PRIMARY KEY ("AudioPlayerID"),
+	CONSTRAINT fk_audioplayer_audioplayertypeid FOREIGN KEY ("AudioPlayerTypeID") REFERENCES "Probe"."AudioPlayerType"("AudioPlayerTypeID"),
+	CONSTRAINT fk_audioplayer_nodeid FOREIGN KEY ("NodeID") REFERENCES "Probe"."Node"("NodeID")
+);
+CREATE INDEX ix_audioplayer_audioplayertypeid ON "Probe"."AudioPlayer" USING btree ("AudioPlayerTypeID");
+CREATE INDEX ix_audioplayer_isdeleted_modifieddate ON "Probe"."AudioPlayer" USING btree ("IsDeleted", "ModifiedDate");
+CREATE INDEX ix_audioplayer_modifiedbyuserid ON "Probe"."AudioPlayer" USING btree ("ModifiedByUserID");
+CREATE INDEX ix_audioplayer_modifieddate ON "Probe"."AudioPlayer" USING btree ("ModifiedDate");
+CREATE INDEX ix_audioplayer_name ON "Probe"."AudioPlayer" USING btree ("Name");
+CREATE INDEX ix_audioplayer_nodeid ON "Probe"."AudioPlayer" USING btree ("NodeID");
+
+-- Table Triggers
+
+create trigger audioplayer_is_deleted_update after
+update
+    on
+    "Probe"."AudioPlayer" referencing new table as updated for each statement execute function "Probe".fn_audioplayer_update_is_deleted();
+create trigger audioplayer_log_delete after
+delete
+    on
+    "Probe"."AudioPlayer" referencing old table as log for each statement execute function "Probe".fn_audioplayer_log_delete();
+create trigger audioplayer_log_insert after
+insert
+    on
+    "Probe"."AudioPlayer" referencing new table as log for each statement execute function "Probe".fn_audioplayer_log_insert();
+create trigger audioplayer_log_update after
+update
+    on
+    "Probe"."AudioPlayer" referencing new table as log for each statement execute function "Probe".fn_audioplayer_log_update();
+	
+	
+-- "Probe"."vAudioPlayer" source
+
+CREATE OR REPLACE VIEW "Probe"."vAudioPlayer"
+AS SELECT "AudioPlayer"."AudioPlayerID",
+    "AudioPlayer"."AudioPlayerTypeID",
+    "AudioPlayer"."IsDeleted",
+    "AudioPlayer"."IsDisabled",
+    "AudioPlayer"."IsVirtual",
+    "AudioPlayer"."JSON",
+    "AudioPlayer"."ModifiedByUserID",
+    "AudioPlayer"."ModifiedDate",
+    "AudioPlayer"."Name",
+    "AudioPlayer"."NodeID",
+    "AudioPlayer"."XmlParameters",
+    fk_audioplayer_audioplayertypeid."Name" AS "AudioPlayerTypeName",
+    fk_audioplayer_nodeid."IsDeleted" AS "NodeIsDeleted",
+    fk_audioplayer_nodeid."Name" AS "NodeName",
+    v."ModifiedByUserIsDeleted",
+    v."ModifiedByUserLogin",
+    v."ModifiedByUserName"
+   FROM "Probe"."AudioPlayer"
+     LEFT JOIN "Probe"."AudioPlayerType" fk_audioplayer_audioplayertypeid ON "AudioPlayer"."AudioPlayerTypeID" = fk_audioplayer_audioplayertypeid."AudioPlayerTypeID"
+     LEFT JOIN "Probe"."Node" fk_audioplayer_nodeid ON "AudioPlayer"."NodeID" = fk_audioplayer_nodeid."NodeID"
+     LEFT JOIN "Admin"."vModifiedByUserRef" v ON v."ModifiedByUserID" = "AudioPlayer"."ModifiedByUserID";

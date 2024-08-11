@@ -1,0 +1,78 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "TestDbContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Context",
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "PostGreContext",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "orders.order_db",
+         "ObjectType": 0
+      },
+      {
+         "Name": "orders.order_table",
+         "ObjectType": 0
+      },
+      {
+         "Name": "queues.qeue",
+         "ObjectType": 0
+      },
+      {
+         "Name": "reservations.reservation",
+         "ObjectType": 0
+      },
+      {
+         "Name": "reservations.reservation_table",
+         "ObjectType": 0
+      },
+      {
+         "Name": "tables.table_db",
+         "ObjectType": 0
+      },
+      {
+         "Name": "users.user_db",
+         "ObjectType": 0
+      },
+      {
+         "Name": "work_shifts.work_shift",
+         "ObjectType": 0
+      },
+      {
+         "Name": "work_shifts.work_shift_user",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": true,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": true,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": true,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": true,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
