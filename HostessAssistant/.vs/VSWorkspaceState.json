@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers",
     "\\Controllers\\Queue",
-    "\\Controllers\\Reservation",
     "\\Controllers\\Table",
     "\\Interfaces",
     "\\Interfaces\\Admin",
     "\\Interfaces\\Order",
     "\\Interfaces\\Reservation",
-    "\\Interfaces\\User"
+    "\\Interfaces\\User",
+    "\\obj",
+    "\\Properties"
   ],
-  "SelectedNode": "\\Controllers\\Reservation\\ReservationController.cs",
   "PreviewInSolutionExplorer": false
 }

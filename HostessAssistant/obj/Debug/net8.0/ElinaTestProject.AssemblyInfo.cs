@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElinaTestProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8339a1305cd31bcef629c87d2ac8cd696b841bd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElinaTestProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElinaTestProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

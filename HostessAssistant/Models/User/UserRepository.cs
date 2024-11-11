@@ -156,7 +156,8 @@ namespace ElinaTestProject.Models.User
                     DateOfBirth = x.DateOfBirth,
                     Phone = x.Phone,
                     TelegramID = x.TelegramId,
-                    Email = x.Email
+                    Email = x.Email,
+                    Password = x.PasswordHash
 
                 }).FirstOrDefaultAsync()
                 .ConfigureAwait(false);
@@ -181,7 +182,8 @@ namespace ElinaTestProject.Models.User
                     DateOfBirth = x.DateOfBirth,
                     Phone = x.Phone,
                     TelegramID = x.TelegramId,
-                    Email = x.Email
+                    Email = x.Email,
+                    Password = x.PasswordHash
                 });
 
             if (finder != null)
@@ -217,7 +219,7 @@ namespace ElinaTestProject.Models.User
                 TelegramId = user.TelegramID,
                 Email = user.Email,
                 ModifiedDate = DateTime.UtcNow,
-                PasswordHash = "test hash hash hash"
+                PasswordHash = user.Password
             };
 
             await _context.UserDbs.AddAsync(db_user);
@@ -245,6 +247,7 @@ namespace ElinaTestProject.Models.User
             db_user.Phone = user.Phone;
             db_user.ModifiedDate = DateTime.Now;
             db_user.UserTypeId = user.UserTypeID;
+            db_user.PasswordHash = user.Password;
 
             await _context.SaveChangesAsync().ConfigureAwait(false);
 

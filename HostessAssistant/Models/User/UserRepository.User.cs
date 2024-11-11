@@ -22,6 +22,8 @@ namespace ElinaTestProject.Models.User
             public string Phone { get; set; }
             public int? TelegramID { get; set; }
             public string Email { get; set; }
+            public string Password { get; set; }
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ElinaTestProject.Interfaces.Admin;
+using ElinaTestProject.Utils;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -19,12 +20,13 @@ namespace ElinaTestProject.Controllers.Admin
         }
 
         [HttpPost]
-        [Route("/api/Admin/[controller]/[action]")]
+        [Route("/api/[controller]/[action]")]
         public async Task<IActionResult> LoginRequest([FromBody] LoginRequestItem item)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
             return await _adminRepository.LoginRequestAsync(item).ConfigureAwait(false);
         }
+
     }
 }

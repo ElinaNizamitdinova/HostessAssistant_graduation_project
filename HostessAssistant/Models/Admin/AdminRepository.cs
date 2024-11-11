@@ -1,8 +1,13 @@
 ﻿using ElinaTestProject.Interfaces.Admin;
+using ElinaTestProject.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PostGreContext.Context;
+using PostGreContext.Enums;
+using PostGreContext.Models;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElinaTestProject.Models.Admin
@@ -20,6 +25,7 @@ namespace ElinaTestProject.Models.Admin
             _context = context;
             _logger = loggerFactory.CreateLogger(_objectName);
         }
+ 
 
         public async Task<IActionResult> LoginRequestAsync(LoginRequestItem item)
         {
@@ -27,5 +33,7 @@ namespace ElinaTestProject.Models.Admin
 
             return new OkResult();
         }
+
+       
     }
 }

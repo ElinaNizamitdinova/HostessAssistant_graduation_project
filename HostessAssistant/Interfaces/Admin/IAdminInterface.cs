@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using static ElinaTestProject.Models.Admin.AdminRepository;
+using static ElinaTestProject.Models.User.UserRepository;
 
 
 namespace ElinaTestProject.Interfaces.Admin
@@ -11,5 +12,6 @@ namespace ElinaTestProject.Interfaces.Admin
     public interface IAdminInterface
     {
         Task<IActionResult> LoginRequestAsync(LoginRequestItem item);
+       
     }
 }
